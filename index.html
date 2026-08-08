@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="A secure browser-based password strength analyzer and generator.">
+
+    <title>Password Strength Analyzer</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="header">
+    <div class="container">
+        <h1>🔐 Password Strength Analyzer</h1>
+        <p>Check your password strength and learn how to make it stronger.</p>
+    </div>
+</header>
+
+<main class="container">
+
+    <!-- Password Analyzer -->
+    <section class="card">
+
+        <h2>Password Analyzer</h2>
+
+        <div class="password-input-wrapper">
+
+            <input
+                type="password"
+                id="password"
+                placeholder="Enter your password"
+                autocomplete="new-password"
+                spellcheck="false"
+            >
+
+            <button
+                type="button"
+                id="togglePassword"
+                class="icon-button"
+                aria-label="Show password"
+            >
+                👁
+            </button>
+
+        </div>
+
+        <!-- Strength -->
+        <div class="strength-section">
+
+            <div class="strength-header">
+                <span>Strength</span>
+                <strong id="strengthText">Very Weak</strong>
+            </div>
+
+            <div class="progress-container">
+                <div id="strengthBar" class="progress-bar"></div>
+            </div>
+
+            <div class="score">
+                Score: <span id="score">0</span>/100
+            </div>
+
+        </div>
+
+        <!-- Analysis -->
+        <div class="analysis">
+
+            <h3>Password Analysis</h3>
+
+            <div class="checks">
+
+                <div id="lengthCheck" class="check">
+                    <span class="check-icon">✗</span>
+                    <span>At least 12 characters</span>
+                </div>
+
+                <div id="upperCheck" class="check">
+                    <span class="check-icon">✗</span>
+                    <span>Contains uppercase letters</span>
+                </div>
+
+                <div id="lowerCheck" class="check">
+                    <span class="check-icon">✗</span>
+                    <span>Contains lowercase letters</span>
+                </div>
+
+                <div id="numberCheck" class="check">
+                    <span class="check-icon">✗</span>
+                    <span>Contains numbers</span>
+                </div>
+
+                <div id="specialCheck" class="check">
+                    <span class="check-icon">✗</span>
+                    <span>Contains special characters</span>
+                </div>
+
+                <div id="repeatCheck" class="check">
+                    <span class="check-icon">✗</span>
+                    <span>Avoids excessive repeated characters</span>
+                </div>
+
+                <div id="sequenceCheck" class="check">
+                    <span class="check-icon">✗</span>
+                    <span>Avoids predictable sequences</span>
+                </div>
+
+                <div id="commonCheck" class="check">
+                    <span class="check-icon">✗</span>
+                    <span>Not a common password</span>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Entropy -->
+        <div class="entropy-box">
+
+            <div>
+                <span>Estimated Entropy</span>
+                <strong id="entropy">0 bits</strong>
+            </div>
+
+            <div>
+                <span>Character Pool</span>
+                <strong id="charsetSize">0</strong>
+            </div>
+
+        </div>
+
+        <!-- Suggestions -->
+        <div class="suggestions">
+
+            <h3>💡 Suggestions</h3>
+
+            <ul id="suggestionList">
+                <li>Enter a password to receive security recommendations.</li>
+            </ul>
+
+        </div>
+
+    </section>
+
+
+    <!-- Password Generator -->
+    <section class="card">
+
+        <h2>🎲 Strong Password Generator</h2>
+
+        <p class="description">
+            Generate a random password using a cryptographically secure
+            browser random number generator.
+        </p>
+
+        <div class="generator-options">
+
+            <label for="passwordLength">
+                Password Length:
+                <strong id="lengthValue">20</strong>
+            </label>
+
+            <input
+                type="range"
+                id="passwordLength"
+                min="8"
+                max="64"
+                value="20"
+            >
+
+            <label class="option">
+                <input type="checkbox" id="genUpper" checked>
+                Uppercase letters
+            </label>
+
+            <label class="option">
+                <input type="checkbox" id="genLower" checked>
+                Lowercase letters
+            </label>
+
+            <label class="option">
+                <input type="checkbox" id="genNumbers" checked>
+                Numbers
+            </label>
+
+            <label class="option">
+                <input type="checkbox" id="genSymbols" checked>
+                Special characters
+            </label>
+
+        </div>
+
+        <div class="generated-password">
+
+            <input
+                type="text"
+                id="generatedPassword"
+                readonly
+                placeholder="Generated password"
+            >
+
+            <button
+                type="button"
+                id="copyButton"
+                class="secondary-button"
+            >
+                Copy
+            </button>
+
+        </div>
+
+        <button
+            type="button"
+            id="generateButton"
+            class="primary-button"
+        >
+            Generate Strong Password
+        </button>
+
+        <p id="copyMessage" class="copy-message"></p>
+
+    </section>
+
+
+    <!-- Security Information -->
+    <section class="card information">
+
+        <h2>🛡️ Password Security Tips</h2>
+
+        <div class="tips-grid">
+
+            <div>
+                <h3>Use Long Passwords</h3>
+                <p>
+                    Longer passwords are generally harder for attackers
+                    to guess. Prefer 12–16+ characters.
+                </p>
+            </div>
+
+            <div>
+                <h3>Use Unique Passwords</h3>
+                <p>
+                    Don't reuse the same password across multiple websites.
+                </p>
+            </div>
+
+            <div>
+                <h3>Use a Password Manager</h3>
+                <p>
+                    A password manager can create and remember unique
+                    passwords for different accounts.
+                </p>
+            </div>
+
+            <div>
+                <h3>Never Share Passwords</h3>
+                <p>
+                    Legitimate services should not ask you to send your
+                    password through email or chat.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+<footer>
+    <div class="container">
+        <p>
+            Password Strength Analyzer • Educational Cyber Security Project
+        </p>
+
+        <p class="privacy">
+            🔒 Passwords are analyzed locally in your browser and are not
+            uploaded or stored by this application.
+        </p>
+    </div>
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+</html>
